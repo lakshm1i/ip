@@ -2,6 +2,7 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -15,6 +16,7 @@ public class Task {
             return " ";
         }
     }
+
     public void markAsDone() {
         this.isDone = true;
     }
@@ -25,6 +27,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description; // Format: [X] read book
+        return "[" + getStatusIcon() + "]" + description; // Format: [X] read book
     }
 }

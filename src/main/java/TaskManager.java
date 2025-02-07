@@ -3,17 +3,20 @@ public class TaskManager {
     private static final Task[] tasks = new Task[100]; //Array to store tasks
     private static int taskCounter = 0; //Track number of tasks stored
 
-    public static void addTask(String description) {
-        tasks[taskCounter] = new Task(description); //Add task to array
+    public void addTask(Task task) {
+        tasks[taskCounter] = task; //Add task to array
         taskCounter++; //Increment the task counter
-        System.out.println("added: " + description);
+        System.out.println("Got it. I've added this task:");
+        System.out.println(" " + task);
+        System.out.println("Now you have " + taskCounter + " tasks in the list.");
     }
 
-    public static void listTask() {
+    public void listTask() {
         if (taskCounter == 0) { //Check if there are no tasks in array
             System.out.println("No tasks have been added");
             return;
         }
+        System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskCounter; i++) {
             System.out.println((i + 1) + ". " + tasks[i].toString()); //Print task number and name
         }
