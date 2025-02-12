@@ -1,14 +1,19 @@
 public class TaskManager {
 
-    private static final Task[] taskList = new Task[100]; //Array to store tasks
-    private static int taskCounter = 0; //Track number of tasks stored
+    private static final int MAX_TASKS = 100;
+    private final Task[] taskList = new Task[MAX_TASKS]; //Array to store tasks
+    private int taskCounter = 0; //Track number of tasks stored
 
     public void addTask(Task task) {
-        taskList[taskCounter] = task; //Add task to array
-        taskCounter++; //Increment the task counter
-        System.out.println("Got it. I've added this task:");
-        System.out.println(" " + task);
-        System.out.println("Now you have " + taskCounter + " tasks in the list.");
+        if (taskCounter < MAX_TASKS) {
+            taskList[taskCounter++] = task; //Add task to array
+            System.out.println("Got it. I've added this task:");
+            System.out.println(" " + task);
+            System.out.println("Now you have " + taskCounter + " tasks in the list.");
+        }
+        else {
+            System.out.println("Unable to add more tasks as Task list is full.");
+        }
     }
 
     public void displayTaskList() {
