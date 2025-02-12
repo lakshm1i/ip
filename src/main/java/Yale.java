@@ -28,41 +28,33 @@ public class Yale {
             processMarkTask(userInput, taskManager);
         } else if (userInput.startsWith("unmark ")) {
             processUnmarkTask(userInput, taskManager);
-        } else if (userInput.startsWith("todo ")) {
+        } else if (userInput.startsWith("todo")) {
             processToDoTask(userInput, taskManager);
         } else if (userInput.startsWith("deadline ")) {
             processDeadlineTask(userInput, taskManager);
         } else if (userInput.startsWith("event ")) {
             processEventTask(userInput, taskManager);
         } else {
-            System.out.println("Invalid command. Please try again.");
+            System.out.println("Sorry! Invalid command. Please type another command.");
         }
     }
 
     private static void processMarkTask(String userInput, TaskManager taskManager) {
-        int index = parseTaskIndex(userInput.substring(5));
-        if (index != -1) {
-            taskManager.markTask(index);
-        } else {
-            System.out.println("Invalid task index.");
-        }
+        int index = Integer.parseInt(userInput.substring(5));
+        taskManager.markTask(index);
     }
 
     private static void processUnmarkTask(String userInput, TaskManager taskManager) {
-        int index = parseTaskIndex(userInput.substring(7));
-        if (index != -1) {
-            taskManager.unmarkTask(index);
-        } else {
-            System.out.println("Invalid task index.");
-        }
+        int index = Integer.parseInt(userInput.substring(7));
+        taskManager.unmarkTask(index);
     }
 
     private static void processToDoTask(String userInput, TaskManager taskManager) {
-        String description = userInput.substring(5).trim();
-        if (!description.isEmpty()) {
+        String description = userInput.substring(4).trim();
+        if (description.isEmpty()) {
+            System.out.println("Sorry! Description cannot be empty.");        }
+        else {
             taskManager.addTask(new ToDo(description));
-        } else {
-            System.out.println("Description cannot be empty.");
         }
     }
 
@@ -73,7 +65,7 @@ public class Yale {
             String by = parts[1].trim();
             taskManager.addTask(new Deadline(description, by));
         } else {
-            System.out.println("Invalid deadline format.");
+            System.out.println("Sorry! Invalid deadline format.");
         }
     }
 
@@ -85,7 +77,7 @@ public class Yale {
             String to = parts[2].trim();
             taskManager.addTask(new Event(description, from, to));
         } else {
-            System.out.println("Invalid event format.");
+            System.out.println("Sorry! Invalid event format.");
         }
     }
 
