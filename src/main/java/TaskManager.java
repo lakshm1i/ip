@@ -1,32 +1,32 @@
 public class TaskManager {
 
-    private static final Task[] tasks = new Task[100]; //Array to store tasks
+    private static final Task[] taskList = new Task[100]; //Array to store tasks
     private static int taskCounter = 0; //Track number of tasks stored
 
     public void addTask(Task task) {
-        tasks[taskCounter] = task; //Add task to array
+        taskList[taskCounter] = task; //Add task to array
         taskCounter++; //Increment the task counter
         System.out.println("Got it. I've added this task:");
         System.out.println(" " + task);
         System.out.println("Now you have " + taskCounter + " tasks in the list.");
     }
 
-    public void listTask() {
+    public void displayTaskList() {
         if (taskCounter == 0) { //Check if there are no tasks in array
             System.out.println("No tasks have been added");
             return;
         }
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskCounter; i++) {
-            System.out.println((i + 1) + ". " + tasks[i].toString()); //Print task number and name
+            System.out.println((i + 1) + ". " + taskList[i].toString()); //Print task number and name
         }
     }
 
-    public void markTask(int index) {
-        if (index > 0 && index <= taskCounter ) {
-            tasks[index - 1].markAsDone();
+    public void markTask(int taskIndex) {
+        if (taskIndex > 0 && taskIndex <= taskCounter ) {
+            taskList[taskIndex - 1].markAsDone();
             System.out.println("Nice! I've marked this task as done:");
-            System.out.println("  " + tasks[index-1]);
+            System.out.println("  " + taskList[taskIndex-1]);
         } else {
             System.out.println("Invalid task index");
         }
@@ -34,9 +34,9 @@ public class TaskManager {
 
     public void unmarkTask(int index) {
         if (index > 0 && index <= taskCounter ) {
-            tasks[index-1].markAsNotDone();
+            taskList[index-1].markAsNotDone();
             System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println("  " + tasks[index-1]);
+            System.out.println("  " + taskList[index-1]);
         }
         else {
             System.out.println("Invalid task index");
