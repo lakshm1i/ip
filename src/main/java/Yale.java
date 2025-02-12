@@ -12,16 +12,20 @@ public class Yale {
         Scanner inputScanner = new Scanner(System.in);
 
         while (true) {
-            String userInput = inputScanner.nextLine().trim(); // Read and trim user input
-            if (userInput.equalsIgnoreCase("bye")) {
-                UI.exitChat();
-                break;
+            try {
+                String userInput = inputScanner.nextLine().trim(); // Read and trim user input
+                if (userInput.toLowerCase().contains("bye".toLowerCase())) {
+                    UI.exitChat();
+                    break;
+                }
+                processUserInput(userInput, taskManager);
+            } catch (YaleException e) {
+                System.out.println("Sorry! " + e.getMessage());
             }
-            processUserInput(userInput, taskManager);
         }
     }
 
-    private static void processUserInput(String userInput, TaskManager taskManager) {
+    private static void processUserInput(String userInput, TaskManager taskManager) throws YaleException {
         if (userInput.equalsIgnoreCase("list")) {
             taskManager.displayTaskList();
         } else if (userInput.startsWith("mark ")) {
@@ -35,7 +39,7 @@ public class Yale {
         } else if (userInput.startsWith("event ")) {
             processEventTask(userInput, taskManager);
         } else {
-            System.out.println("Sorry! Invalid command. Please type another command.");
+            throw new YaleException("Invalid command. Please type another command.");
         }
     }
 
@@ -49,27 +53,27 @@ public class Yale {
         taskManager.unmarkTask(index);
     }
 
-    private static void processToDoTask(String userInput, TaskManager taskManager) {
+    private static void processToDoTask(String userInput, TaskManager taskManager) throws YaleException {
         String description = userInput.substring(4).trim();
         if (description.isEmpty()) {
-            System.out.println("Sorry! Description cannot be empty.");        }
+            throw new YaleException("Description cannot be empty.");        }
         else {
             taskManager.addTask(new ToDo(description));
         }
     }
 
-    private static void processDeadlineTask(String userInput, TaskManager taskManager) {
+    private static void processDeadlineTask(String userInput, TaskManager taskManager) throws YaleException {
         String[] parts = userInput.substring(9).split(" /by ");
         if (parts.length == 2) {
             String description = parts[0].trim();
             String by = parts[1].trim();
             taskManager.addTask(new Deadline(description, by));
         } else {
-            System.out.println("Sorry! Invalid deadline format.");
+            throw new YaleException("Invalid deadline format. Follow: deadline <description> /by <date>\"");
         }
     }
 
-    private static void processEventTask(String userInput, TaskManager taskManager) {
+    private static void processEventTask(String userInput, TaskManager taskManager) throws YaleException {
         String[] parts = userInput.substring(6).split(" /from | /to ");
         if (parts.length == 3) {
             String description = parts[0].trim();
@@ -77,16 +81,8 @@ public class Yale {
             String to = parts[2].trim();
             taskManager.addTask(new Event(description, from, to));
         } else {
-            System.out.println("Sorry! Invalid event format.");
+            throw new YaleException("Invalid event format. Follow: event <description> /from <start> /to <end>");
         }
     }
 
-    private static int parseTaskIndex(String input) {
-        try {
-            int index = Integer.parseInt(input.trim());
-            return index > 0 ? index : -1;
-        } catch (NumberFormatException e) {
-            return -1;
-        }
-    }
 }
