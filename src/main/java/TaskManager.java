@@ -55,6 +55,19 @@ public class TaskManager {
         }
     }
 
+
+    public void deleteTask(int index) {
+        if (index >= 1 && index <= taskList.size()) {
+            Task removedTask = taskList.remove(index - 1); // Remove task at index
+            System.out.println("Noted. I've removed this task:");
+            System.out.println("  " + removedTask);
+            System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+        } else {
+            System.out.println("Invalid task index.");
+        }
+    }
+
+
     // Method to load tasks from the file
     private void loadTasks() {
         storage.loadTasks(taskList);
