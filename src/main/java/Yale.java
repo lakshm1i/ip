@@ -38,6 +38,8 @@ public class Yale {
             processDeadlineTask(userInput, taskManager);
         } else if (userInput.startsWith("event ")) {
             processEventTask(userInput, taskManager);
+        } else if (userInput.startsWith("delete ")) {
+            processDeleteTask(userInput, taskManager);
         } else {
             throw new YaleException("Invalid command. Please type another command.");
         }
@@ -83,6 +85,11 @@ public class Yale {
         } else {
             throw new YaleException("Invalid event format. Follow: event <description> /from <start> /to <end>");
         }
+    }
+
+    private static void processDeleteTask(String userInput, TaskManager taskManager) {
+        int index = Integer.parseInt(userInput.substring(7));
+        taskManager.deleteTask(index);
     }
 
 }
