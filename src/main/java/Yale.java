@@ -2,6 +2,15 @@ import java.util.Scanner;
 
 public class Yale {
 
+    private static final String COMMAND_LIST = "list";
+    private static final String COMMAND_MARK = "mark ";
+    private static final String COMMAND_UNMARK = "unmark ";
+    private static final String COMMAND_TODO = "todo";
+    private static final String COMMAND_DEADLINE = "deadline ";
+    private static final String COMMAND_EVENT = "event ";
+    private static final String COMMAND_DELETE = "delete ";
+    private static final String COMMAND_BYE = "bye";
+
     public static void main(String[] args) {
         UI.greetUser();
         handleUserInput();
@@ -26,19 +35,19 @@ public class Yale {
     }
 
     private static void processUserInput(String userInput, TaskManager taskManager) throws YaleException {
-        if (userInput.equalsIgnoreCase("list")) {
+        if (userInput.equalsIgnoreCase(COMMAND_LIST)) {
             taskManager.displayTaskList();
-        } else if (userInput.startsWith("mark ")) {
+        } else if (userInput.startsWith(COMMAND_MARK)) {
             processMarkTask(userInput, taskManager);
-        } else if (userInput.startsWith("unmark ")) {
+        } else if (userInput.startsWith(COMMAND_UNMARK)) {
             processUnmarkTask(userInput, taskManager);
-        } else if (userInput.startsWith("todo")) {
+        } else if (userInput.startsWith(COMMAND_TODO)) {
             processToDoTask(userInput, taskManager);
-        } else if (userInput.startsWith("deadline ")) {
+        } else if (userInput.startsWith(COMMAND_DEADLINE)) {
             processDeadlineTask(userInput, taskManager);
-        } else if (userInput.startsWith("event ")) {
+        } else if (userInput.startsWith(COMMAND_EVENT)) {
             processEventTask(userInput, taskManager);
-        } else if (userInput.startsWith("delete ")) {
+        } else if (userInput.startsWith(COMMAND_DELETE)) {
             processDeleteTask(userInput, taskManager);
         } else {
             throw new YaleException("Invalid command. Please type another command.");

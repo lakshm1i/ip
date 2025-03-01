@@ -9,12 +9,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        if (isDone) {
-            return "X";
-        }
-        else {
-            return " ";
-        }
+        return (isDone) ? "X" : " ";
     }
 
     public String getDescription() {
