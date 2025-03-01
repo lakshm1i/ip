@@ -1,23 +1,44 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class UI {
 
-    public static void greetUser() {
+public class Ui {
+
+    private Scanner scanner;
+
+    public Ui() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void showWelcome() {
         System.out.println("Hello! I'm Yale");
         System.out.println("What can I do for you?");
     }
 
-    public static void exitChat() {
+    public void showGoodbye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public static void displayTaskAdded(Task task, int taskCount) {
+    public String readCommand() {
+        return scanner.nextLine().trim();
+    }
+
+
+    public void showError(String message) {
+        System.out.println("Error: " + message);
+    }
+
+    public void showLoadingError() {
+        System.out.println("Error loading tasks from file. Starting with an empty task list.");
+    }
+
+    public void showTaskAdded(Task task, int taskCount) {
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + task);
         System.out.println("Now you have " + taskCount + " tasks in the list.");
     }
 
-    public static void displayTaskList(ArrayList<Task> taskList) {
+    public void showTaskList(ArrayList<Task> taskList) {
         if (taskList.isEmpty()) {
             System.out.println("No tasks have been added");
             return;
@@ -28,24 +49,19 @@ public class UI {
         }
     }
 
-    public static void displayTaskMarked(Task task) {
+    public void showTaskMarked(Task task) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println("  " + task);
     }
 
-    public static void displayTaskUnmarked(Task task) {
+    public void showTaskUnmarked(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  " + task);
     }
 
-    public static void displayTaskDeleted(Task task, int taskCount) {
+    public void showTaskDeleted(Task task, int taskCount) {
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + task);
         System.out.println("Now you have " + taskCount + " tasks in the list.");
     }
-
-    public static void displayError(String message) {
-        System.out.println("Sorry! " + message);
-    }
-
 }

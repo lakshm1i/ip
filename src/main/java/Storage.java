@@ -26,7 +26,7 @@ public class Storage {
         }
     }
 
-    public void saveTasks(ArrayList<Task> taskList) {
+    public void save(ArrayList<Task> taskList) {
         try (FileWriter fw = new FileWriter(filePath)) {
             for (Task task : taskList) {
                 String taskType = (task instanceof ToDo) ? "T" :
@@ -50,7 +50,7 @@ public class Storage {
         }
     }
 
-    public void loadTasks(ArrayList<Task> taskList) {
+    public void load(ArrayList<Task> taskList) {
         File file = new File(filePath);
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
