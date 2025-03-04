@@ -1,4 +1,20 @@
+/**
+ * Parses user input and executes the corresponding commands.
+ */
+
+
+
 public class Parser {
+
+    /**
+     * Parses the user input and executes the corresponding command.
+     *
+     * @param userInput The input provided by the user.
+     * @param taskList The list of tasks to operate on.
+     * @param ui The user interface to display messages.
+     * @param storage The storage to save tasks after modifications.
+     * @throws YaleException If the user input is invalid or an error occurs during execution.
+     */
 
     public static void parse(String userInput, TaskList taskList, Ui ui, Storage storage) throws YaleException {
         if (userInput.equalsIgnoreCase("list")) {
