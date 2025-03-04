@@ -1,30 +1,145 @@
-# Duke User Guide
+# Yale User Guide
 
-// Update the title above to match the actual product name
 
-// Product screenshot goes here
+Product intro:
+        Yale is a simple command-line chatbot designed to help users 
+        manage tasks efficiently. Users can add, delete, mark, unmark, find and 
+        list tasks. The chatbot supports ToDo, Deadline, and Event 
+        tasks, and it stores tasks persistently in a file.
 
-// Product intro goes here
+## Features
 
-## Adding deadlines
+### Adding tasks
 
-// Describe the action and its outcome.
+Description: Yale supports three types of tasks: ToDo, Deadline, and Event. Yale stores these type of tasks to a list.
 
-// Give examples of usage
+**(a) Adding a ToDo task**
 
-Example: `keyword (optional arguments)`
+Description: Adds a basic task without any date/time attached to it. First bracket will contain the letter "T"
 
-// A description of the expected outcome goes here
+Command: `todo <task description>`
+
+Example: `todo Buy groceries`
 
 ```
-expected output
+Expected output:
+    Got it. I've added this task:
+        [T][ ] Buy groceries
+    Now you have 1 task in the list.
 ```
 
-## Feature ABC
+**(b) Adding a Deadline task**
 
-// Feature details
+Description: Adds a task that need to be done before a specific date/time. First bracket will contain the letter "D"
+
+Command: `deadline <task description> /by <deadline>`
+
+Example: `deadline Submit assignment /by 2025-03-05`
+
+```
+Expected output:
+    Got it. I've added this task:
+        [D][ ] Submit assignment (by: 2025-03-05)
+    Now you have 2 tasks in the list.
+```
+
+**(c) Adding a Event task**
+
+Description: Adds a task that start at a specific date/time and ends at a specific date/time. First bracket will contain the letter "E"
+
+Command: `event <task description> /from <start time> /to <end time>`
+
+Example: `event Team meeting /from 2pm /to 4pm`
+
+```
+Expected output:
+    Got it. I've added this task:
+        [E][ ] Team meeting (from: 2pm to: 4pm)
+    Now you have 3 tasks in the list.
+```
+
+### Listing all tasks
+
+Description: Displays all current tasks with their status (done or not done).
+
+Command: `list`
+
+```
+Expected output:
+    Here are the tasks in your list:
+    1. [T][ ] Buy groceries
+    2. [D][X] Submit assignment (by: 2025-03-05)
+    3. [E][ ] Team meeting (from: 2pm to: 4pm)
+```
 
 
-## Feature XYZ
+### Marking and unmarking tasks
 
-// Feature details
+**(a) Marking tasks as done**
+
+Description: Marks a task as completed by adding "X" in second bracket.
+
+Command: `mark <task number>`
+
+Example: `mark 1`
+
+```
+Expected output:
+    Nice! I've marked this task as done:
+        [T][X] Buy groceries
+```
+
+**(b) Unmarking tasks**
+
+Description: Marks a task as uncompleted by removing "X" in second bracket.
+
+Command: `unmark <task number>`
+
+Example: `unmark 1`
+
+```
+Expected output:
+    OK, I've marked this task as not done yet:
+        [T][] Buy groceries
+```
+
+### Deleting tasks
+
+Description: Removes a task from the list permanently.
+
+Command: `delete <task number>`
+
+Example: `delete 2`
+
+```
+Expected output:
+    Noted. I've removed this task:
+        [D][X] Submit assignment (by: 2025-03-05)
+    Now you have 2 tasks in the list.
+```
+
+
+### Finding tasks
+
+Description: Find a task by searching for a keyword in the task description.
+
+Command: `find <keyword>`
+
+Example: `find groceries`
+
+```
+Expected output:
+    Here are the matching tasks in your list:
+    1. [T][ ] Buy groceries
+```
+
+### Exiting yale
+
+Description: Closes the chatbot and exits the program.
+
+Command: `bye`
+
+```
+Expected output:
+    Bye. Hope to see you again soon!
+```
