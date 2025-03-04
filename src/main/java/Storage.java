@@ -5,27 +5,13 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-/**
- * Handles loading tasks from a file and saving tasks to a file.
- */
-
 public class Storage {
     private final String filePath;
-
-    /**
-     * Constructs a Storage object with the specified file path.
-     *
-     * @param filePath The file path where tasks are stored.
-     */
 
     public Storage(String filePath) {
         this.filePath = Paths.get(filePath).toString(); // Ensures the file path is portable
         initializeFile();
     }
-
-    /**
-     * Initializes the storage file. Creates the file and its parent directories if they do not exist.
-     */
 
     private void initializeFile() {
         File file = new File(filePath);
@@ -39,12 +25,6 @@ public class Storage {
             }
         }
     }
-
-    /**
-     * Saves the list of tasks to the file.
-     *
-     * @param taskList The list of tasks to save.
-     */
 
     public void save(ArrayList<Task> taskList) {
         try (FileWriter fw = new FileWriter(filePath)) {
@@ -69,12 +49,6 @@ public class Storage {
             System.out.println("Error saving tasks: " + e.getMessage());
         }
     }
-
-    /**
-     * Loads tasks from the file into the given task list.
-     *
-     * @param taskList The list to load tasks into.
-     */
 
     public void load(ArrayList<Task> taskList) {
         File file = new File(filePath);
