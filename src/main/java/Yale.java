@@ -1,11 +1,21 @@
 import java.io.IOException;
 import java.util.Scanner;
+/**
+ * Represents the main class for the Yale chatbot.
+ * Handles the initialization of the application and the main execution loop.
+ */
 
 public class Yale {
 
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
+
+    /**
+     * Constructs a Yale object with the specified file path for storage.
+     *
+     * @param filePath The file path where tasks are stored.
+     */
 
     public Yale(String filePath) {
         ui = new Ui();
@@ -19,6 +29,11 @@ public class Yale {
             taskList = new TaskList();
         }
     }
+
+    /**
+     * Runs the Yale application.
+     * Displays a welcome message and processes user commands until the user exits with the command "bye".
+     */
 
     public void run() {
         ui.showWelcome();
