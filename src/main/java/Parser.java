@@ -1,7 +1,8 @@
+import java.util.ArrayList;
+
 /**
  * Parses user input and executes the corresponding commands.
  */
-
 
 
 public class Parser {
@@ -81,6 +82,10 @@ public class Parser {
             } else {
                 throw new YaleException("Invalid task index. Please try again.");
             }
+        } else if (userInput.startsWith("find")) {
+            String keyword = userInput.substring(5).trim();
+            ArrayList<Task> matchingTasks = taskList.findTasks(keyword);
+            ui.showMatchingTasks(matchingTasks);
         } else {
             throw new YaleException("Invalid command. Please type another command.");
         }
